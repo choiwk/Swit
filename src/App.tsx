@@ -5,7 +5,7 @@ import { Dispatch } from 'redux';
 import ChatInput from 'components/ChatInput/ChatInput';
 import Example from 'components/Example';
 import SignInTest from 'components/SignInTest';
-
+import TextArea from 'components/ChatInput/TextArea';
 import { RootState } from 'redux/reducer';
 import { reduxUser, reduxSignOut } from 'types/reduxTypes';
 
@@ -32,6 +32,7 @@ function App({ user, signOut }: reduxProps) {
         <>
           <Example />
           <ChatInput />
+          {/* <TextArea /> */}
         </>
       )}
     </div>

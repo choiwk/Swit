@@ -1,34 +1,38 @@
 .input-container {
-  position: relative;
+  position: fixed;
   width: 100%;
-  height: 45px;
-  border: 1px solid black;
+  bottom: 0;
 
-  .form {
-    display: flex;
-
-    align-items: center;
-  }
   .chat-input {
-    border: none;
-    resize: none;
-    height: 100%;
+    position: absolute;
+    padding: 12px 0 10px 10px;
     width: 100%;
+    height: 45px;
+    bottom: 0;
+    font-size: 14px;
+    font-weight: 600;
+    overflow: hidden;
   }
 
-  .send-btn {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 5px;
-    width: 2.4rem;
-    height: 2.4rem;
-
-    border-radius: 3px;
-    background-color: #478bff;
-  }
-  .send-btn:hover {
-    background-color: #1e68f6;
-    cursor: pointer;
+  .btn-container {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    .send-btn {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 5px;
+      width: 2.4rem;
+      height: 2.4rem;
+      float: right;
+      border-radius: 3px;
+      background-color: #478bff;
+      bottom: 0;
+    }
+    .send-btn:hover {
+      background-color: #1e68f6;
+      cursor: pointer;
+    }
   }
 }

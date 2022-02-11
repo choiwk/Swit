@@ -1,7 +1,7 @@
 import React, { useState, useRef, useCallback } from 'react';
 import { HiPaperAirplane } from 'react-icons/hi';
 
-import '../ChatInput/TextArea.scss';
+import './TextArea.scss';
 const TextArea = () => {
   const [areaHeight, setAreaHeight] = useState<string>('');
 
@@ -16,7 +16,7 @@ const TextArea = () => {
   }, [areaHeight]);
 
   return (
-    <>
+    <div className='input-container'>
       <textarea
         className='chat-input'
         ref={areaRef}
@@ -29,7 +29,7 @@ const TextArea = () => {
           <HiPaperAirplane size={24} color='#fff' style={{ transform: 'rotate(90deg)' }} />
         </button>
       </div>
-    </>
+    </div>
   );
 };
 

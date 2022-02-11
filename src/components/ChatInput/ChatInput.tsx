@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useRef } from 'react';
 import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
 import { HiPaperAirplane } from 'react-icons/hi';
@@ -16,6 +16,17 @@ interface reduxProps {
 }
 function ChatInput({ user, postMessage }: reduxProps) {
   const [message, setMessage] = useState<string>('');
+  const [areaHeight, setAreaHeight] = useState<string>('');
+
+  const areaRef = useRef<any>();
+
+  const textResize = useCallback(() => {
+    const textArea = areaRef.current;
+    textArea.height = textArea.scrollHeight + 'px';
+    if (textArea.height !== areaHeight) {
+      setAreaHeight(areaRef.current.height);
+    }
+  }, [areaHeight]);
 
   const validMessage = (send: message) => {
     if (message.trim().split('<br>').join('') !== '') {
@@ -57,14 +68,19 @@ function ChatInput({ user, postMessage }: reduxProps) {
     <div className='input-container'>
       <form className='form' onSubmit={onSubmitHandler}>
         <textarea
+          ref={areaRef}
           className='chat-input'
           onKeyPress={onKeyPressHandler}
           onChange={onChangeHandler}
+          onKeyDown={textResize}
           value={message}
+          style={{ height: areaHeight, minHeight: '45px' }}
         ></textarea>
-        <button type='submit' className='send-btn'>
-          <HiPaperAirplane size={24} color='#fff' style={{ transform: 'rotate(90deg)' }} />
-        </button>
+        <div className='btn-container'>
+          <button className='send-btn' type='submit'>
+            <HiPaperAirplane size={24} color='#fff' style={{ transform: 'rotate(90deg)' }} />
+          </button>
+        </div>
       </form>
     </div>
   );
