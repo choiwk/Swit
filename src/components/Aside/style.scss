@@ -127,4 +127,8 @@ li {
   background-color: RGB(248, 248, 248);
   display: flex;
   flex-direction: column;
+  .content-wrapper {
+    width: 100%;
+    height: calc(100% - 10rem);
+  }
 }

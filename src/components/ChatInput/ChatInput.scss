@@ -1,10 +1,15 @@
 .input-container {
-  width: calc(100% - 5rem);
+  position: relative;
+  width: calc(100% - 2.5rem);
+  padding: 20px;
+  margin-top: 2rem;
   form {
     display: flex;
     align-items: center;
   }
   .chat-input {
+    display: block;
+    position: absolute;
     padding: 12px 0 10px 10px;
     width: 100%;
     bottom: 0;
@@ -12,17 +17,20 @@
     font-weight: 600;
     overflow: hidden;
     resize: none;
+    border-radius: 2px;
+    border: 1px solid #e6e6e8;
   }
   .btn-container {
+    top: -1px;
+    right: -1rem;
     position: absolute;
-    right: 0;
     .send-btn {
       display: flex;
       justify-content: center;
       align-items: center;
-      margin: 5px;
-      width: 2.4rem;
-      height: 2.4rem;
+      // margin: 5px;
+      width: 2.6rem;
+      height: 2.6rem;
       float: right;
       border-radius: 3px;
       background-color: #478bff;
@@ -32,5 +40,20 @@
       background-color: #1e68f6;
       cursor: pointer;
     }
+  }
+}
+
+.input-bottomtext-wrap {
+  position: absolute;
+  right: -1.4rem;
+  bottom: -1rem;
+  line-height: 12px;
+  font-size: 8px;
+  span {
+    color: #8b8e96;
+    margin-right: 8px;
+  }
+  strong {
+    font-weight: 900;
   }
 }

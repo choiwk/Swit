@@ -88,6 +88,7 @@ $gray-color: invert(60%) sepia(10%) saturate(189%) hue-rotate(184deg) brightness
         border-radius: 50%;
         margin-left: 10px;
         cursor: pointer;
+        object-fit: cover;
       }
     }
   }
