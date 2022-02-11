@@ -22,8 +22,8 @@ li {
 
 .aside-container {
   display: flex;
-  height: calc(100% - 4rem);
-  width: 290px;
+  height: calc(100% - 2rem);
+  width: 100%;
   .aside-left {
     @include flex(column);
     width: 50px;
@@ -129,4 +129,5 @@ li {
 .chat-ui-container {
   flex-grow: 3;
   width: 100%;
+  overflow: scroll;
 }
