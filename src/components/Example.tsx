@@ -2,7 +2,7 @@ import React from 'react';
 import { Dispatch } from 'redux';
 import { connect, useSelector, useDispatch, DefaultRootState } from 'react-redux';
 import { postMessage, deleteMessage, postMessageAction, deleteMessageAction } from 'redux/actions';
-import { message } from 'redux/types/message';
+import { message } from 'types/message';
 import { RootState } from 'redux/reducer';
 
 interface reduxProps {
@@ -12,7 +12,27 @@ interface reduxProps {
 }
 
 function Example({ chat, postMessage, deleteMessage }: reduxProps) {
-  return <></>;
+  const onClickHandler = (message: message) => (e: React.MouseEvent<HTMLButtonElement>) => {
+    deleteMessage(message);
+  };
+  return (
+    <>
+      {chat.map((message) => {
+        let content = message.content.split('\n');
+        console.log(content);
+        return (
+          <div key={message.date}>
+            {content.map((line) => {
+              return <li key={line}>{line}</li>;
+            })}
+            <button type='button' onClick={onClickHandler(message)}>
+              삭제
+            </button>
+          </div>
+        );
+      })}
+    </>
+  );
 }
 // function Example() {
 //   const chat = useSelector((state: RootState) => state.chatReducer);
