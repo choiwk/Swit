@@ -1,10 +1,13 @@
-import React, { useCallback } from 'react';
+import { useCallback, useEffect, useRef } from 'react';
 import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
 import { deleteMessage, deleteMessageAction } from 'redux/actions/chatAction';
 import { message } from 'types/message';
 import { RootState } from 'redux/reducer';
 import { reduxUser } from 'types/reduxTypes';
+import './MessageContainer.scss';
+import Message from './Message';
+import ChatInput from 'components/ChatInput/ChatInput';
 
 interface reduxProps {
   chat: message[];
@@ -12,35 +15,26 @@ interface reduxProps {
   deleteMessage: (message: message) => deleteMessageAction;
 }
 
-function Example({ user, chat, deleteMessage }: reduxProps) {
-  const onClickHandler = useCallback(
+function MessageContainer({ user, chat, deleteMessage }: reduxProps) {
+  const deleteHandler = useCallback(
     (message: message) => (e: React.MouseEvent<HTMLButtonElement>) => {
       deleteMessage(message);
     },
     [chat]
   );
-  return (
-    <>
-      {chat.map((message) => {
-        let content = message.content.split('\n');
-        console.log(content);
-        return (
-          <div key={message.date}>
-            <p>
-              {message.userName} {user.userName === message.userName && <span>(나)</span>}
-            </p>
 
-            <p>{message.date}</p>
-            {content.map((line) => {
-              return <li key={line}>{line}</li>;
-            })}
-            <button type='button' onClick={onClickHandler(message)}>
-              삭제
-            </button>
-          </div>
-        );
+  const scrollRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    scrollRef.current?.scrollIntoView({ behavior: 'smooth', block: 'end', inline: 'nearest' });
+  }, [chat]);
+
+  return (
+    <div className='message-container'>
+      {chat.map((message: message, idx) => {
+        return <Message key={idx} message={message} deleteHandler={deleteHandler} />;
       })}
-    </>
+      <ChatInput />
+    </div>
   );
 }
 
@@ -52,4 +46,4 @@ export default connect(
   (dispatch: Dispatch) => ({
     deleteMessage: (message: message) => dispatch(deleteMessage(message)),
   })
-)(Example);
+)(MessageContainer);
