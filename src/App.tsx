@@ -12,6 +12,8 @@ import { reduxUser, reduxSignOut } from 'types/reduxTypes';
 import { signOut } from 'redux/actions/userAction';
 
 import './App.css';
+import Navbar from 'components/Nav/Navbar';
+import Aside from 'components/Aside/Aside';
 interface reduxProps {
   user: reduxUser;
   signOut: reduxSignOut;
@@ -30,8 +32,10 @@ function App({ user, signOut }: reduxProps) {
         <SignInTest />
       ) : (
         <>
-          <Example />
-          <ChatInput />
+            <Navbar />
+            <Aside />
+            <Example />
+            <ChatInput />
           {/* <TextArea /> */}
         </>
       )}
