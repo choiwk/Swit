@@ -1,0 +1,127 @@
+$blue: #3e80ff;
+$lightgray: #d8d8db;
+@mixin flex($direction) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: space-between;
+  align-items: center;
+}
+@mixin flexCenter() {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+* {
+  letter-spacing: 0.1px;
+}
+
+li {
+  cursor: pointer;
+}
+
+.aside-container {
+  display: flex;
+  height: 606px;
+  width: 290px;
+  .aside-left {
+    @include flex(column);
+    width: 50px;
+    border-right: 1px solid $lightgray;
+    padding: 35px 8px;
+    .btn {
+      li {
+        @include flexCenter();
+        width: 30px;
+        height: 30px;
+        background-color: $blue;
+        border-radius: 4px;
+        margin-bottom: 20px;
+      }
+    }
+    .check {
+      background-color: $lightgray !important;
+    }
+    .store {
+      @include flexCenter();
+      width: 30px;
+      height: 30px;
+      border-radius: 4px;
+      background-color: $lightgray;
+    }
+  }
+
+  .aside-right {
+    width: 240px;
+    border-right: 1px solid $lightgray;
+    padding: 5px 0 10px;
+    font-size: 16px;
+    .p-title {
+      font-size: 14px;
+      font-weight: bold;
+      margin: 0 10px 10px 10px;
+      display: flex;
+      justify-content: space-between;
+    }
+    li {
+      color: #8b8e95;
+      margin-bottom: 10px;
+      margin-left: 10px;
+      display: flex;
+      align-items: center;
+    }
+    .browse {
+      margin: 20px 10px 10px;
+      a {
+        display: flex;
+        align-items: center;
+        color: $blue;
+        font-size: 14px;
+        margin-left: 10px;
+      }
+    }
+    .menu {
+      margin: 20px 10px 10px;
+      .title {
+        margin: 30px auto 5px;
+      }
+      .starred {
+        p {
+          margin-left: 5px;
+        }
+      }
+      .channel {
+        li {
+          padding: 0 5px 0 20px;
+          margin-top: 5px;
+        }
+        .issue-container {
+          background-color: #f8f8f8;
+          border-radius: 2px;
+          height: 90px;
+          padding-top: 6px;
+          .issue {
+            display: flex;
+            width: 200px;
+            justify-content: space-between;
+            margin-left: 10px;
+            margin-bottom: 10px;
+            .issue-left {
+              display: flex;
+              align-items: center;
+              p {
+                margin-bottom: 0;
+              }
+            }
+          }
+        }
+      }
+      .dm {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-right: 10px;
+      }
+    }
+  }
+}
