@@ -1,4 +1,4 @@
-import { message } from '../message';
+import { message } from '../types/message';
 
 export const POST_MESSAGE = 'POST_MESSAGE' as const;
 export const DELETE_MESSAGE = 'DELETE_MESSAGE' as const;

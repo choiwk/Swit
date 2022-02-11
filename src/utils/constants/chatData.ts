@@ -43,6 +43,6 @@ export const chatData: ChatData[] = [
     profileImage:
       'https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMDEyMjZfMTc4%2FMDAxNjA4OTg5NTI0MTQ2.gQd-eOs60T2JoHU4CftbE-2UE_6_hZNu9C2DCspgsLsg.CRp4r4FkEDQofwL6ctr0tcd69-xzSkN7mnlzwEtzp5cg.JPEG.cji1020a%2F20140619212024421_99_20140619212101.jpg&type=sc960_832',
     content: ['저는 개나리 가나리 오나리'],
-    date: '2022-02-10 23:55:12',
+    date: '2022-02-10 24:55:12',
   },
 ];
