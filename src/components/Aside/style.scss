@@ -123,6 +123,8 @@ li {
 }
 .chat-ui-container {
   width: 100%;
-  height: calc(100% - 3rem);
+  height: 100%;
   background-color: RGB(248, 248, 248);
+  display: flex;
+  flex-direction: column;
 }

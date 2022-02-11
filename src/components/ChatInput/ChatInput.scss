@@ -1,9 +1,5 @@
 .input-container {
-  position: absolute;
-  width: calc(100% - 19.8rem);
-  bottom: 0;
-  right: 0;
-  margin-top: 30px;
+  width: calc(100% - 5rem);
   form {
     display: flex;
     align-items: center;
@@ -17,7 +13,6 @@
     overflow: hidden;
     resize: none;
   }
-
   .btn-container {
     position: absolute;
     right: 0;
