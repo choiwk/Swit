@@ -26,7 +26,10 @@ function Example({ user, chat, deleteMessage }: reduxProps) {
         console.log(content);
         return (
           <div key={message.date}>
-            {user.userName === message.userName && <p>(나)</p>}
+            <p>
+              {message.userName} {user.userName === message.userName && <span>(나)</span>}
+            </p>
+
             <p>{message.date}</p>
             {content.map((line) => {
               return <li key={line}>{line}</li>;
