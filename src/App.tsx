@@ -2,7 +2,6 @@ import { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 
-import ChatInput from 'components/ChatInput/ChatInput';
 import SignInTest from 'components/SignInTest';
 import { RootState } from 'redux/reducer';
 import { reduxUser, reduxSignOut } from 'types/reduxTypes';
