@@ -1,20 +1,24 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { Dispatch } from 'redux';
-import { connect, useSelector, useDispatch, DefaultRootState } from 'react-redux';
-import { postMessage, deleteMessage, postMessageAction, deleteMessageAction } from 'redux/actions';
+import { connect } from 'react-redux';
+import { deleteMessage, deleteMessageAction } from 'redux/actions/chatAction';
 import { message } from 'types/message';
 import { RootState } from 'redux/reducer';
+import { reduxUser } from 'types/reduxTypes';
 
 interface reduxProps {
   chat: message[];
-  postMessage: (message: message) => postMessageAction;
+  user: reduxUser;
   deleteMessage: (message: message) => deleteMessageAction;
 }
 
-function Example({ chat, postMessage, deleteMessage }: reduxProps) {
-  const onClickHandler = (message: message) => (e: React.MouseEvent<HTMLButtonElement>) => {
-    deleteMessage(message);
-  };
+function Example({ user, chat, deleteMessage }: reduxProps) {
+  const onClickHandler = useCallback(
+    (message: message) => (e: React.MouseEvent<HTMLButtonElement>) => {
+      deleteMessage(message);
+    },
+    [chat]
+  );
   return (
     <>
       {chat.map((message) => {
@@ -22,6 +26,8 @@ function Example({ chat, postMessage, deleteMessage }: reduxProps) {
         console.log(content);
         return (
           <div key={message.date}>
+            {user.userName === message.userName && <p>(나)</p>}
+            <p>{message.date}</p>
             {content.map((line) => {
               return <li key={line}>{line}</li>;
             })}
@@ -34,18 +40,13 @@ function Example({ chat, postMessage, deleteMessage }: reduxProps) {
     </>
   );
 }
-// function Example() {
-//   const chat = useSelector((state: RootState) => state.chatReducer);
-//   const dispatch = useDispatch();
-//   return <></>;
-// }
 
 export default connect(
   (state: RootState) => ({
     chat: state.chatReducer,
+    user: state.userReducer.isLoggin,
   }),
   (dispatch: Dispatch) => ({
-    postMessage: (message: message) => dispatch(postMessage(message)),
     deleteMessage: (message: message) => dispatch(deleteMessage(message)),
   })
 )(Example);

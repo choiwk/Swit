@@ -1,19 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
 import { HiPaperAirplane } from 'react-icons/hi';
 import { message } from 'types/message';
 import { RootState } from 'redux/reducer';
-import { postMessage, deleteMessage, postMessageAction, deleteMessageAction } from 'redux/actions';
+import { postMessage } from 'redux/actions/chatAction';
 import { generateMessage } from 'utils/functions/generateMessage';
+import { reduxUser, reduxPostMessage } from 'types/reduxTypes';
+import { User } from 'types/user';
 import '../ChatInput/ChatInput.scss';
 
 interface reduxProps {
-  chat: message[];
-  postMessage: (message: message) => postMessageAction;
-  deleteMessage: (message: message) => deleteMessageAction;
+  user: reduxUser;
+  postMessage: reduxPostMessage;
 }
-function ChatInput({ chat, postMessage, deleteMessage }: reduxProps) {
+function ChatInput({ user, postMessage }: reduxProps) {
   const [message, setMessage] = useState<string>('');
 
   const validMessage = (send: message) => {
@@ -24,22 +25,33 @@ function ChatInput({ chat, postMessage, deleteMessage }: reduxProps) {
     }
   };
 
-  const onSubmitHandler = (e: React.FormEvent) => {
-    e.preventDefault();
-    validMessage(generateMessage(message));
-  };
-
-  const onKeyPressHandler = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
-    if (e.key === 'Enter' && !e.shiftKey) {
+  const onSubmitHandler = useCallback(
+    (e: React.FormEvent) => {
       e.preventDefault();
-      console.log('제출');
-      validMessage(generateMessage(message));
-    }
-  };
 
-  const onChangeHandler = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setMessage(e.target.value);
-  };
+      validMessage(generateMessage(user as User, message));
+    },
+    [message, user]
+  );
+
+  const onKeyPressHandler = useCallback(
+    (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
+      if (e.key === 'Enter' && !e.shiftKey) {
+        e.preventDefault();
+        console.log('제출', generateMessage(user as User, message));
+
+        validMessage(generateMessage(user as User, message));
+      }
+    },
+    [message, user]
+  );
+
+  const onChangeHandler = useCallback(
+    (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+      setMessage(e.target.value);
+    },
+    [message]
+  );
 
   return (
     <div className='input-container'>
@@ -60,10 +72,9 @@ function ChatInput({ chat, postMessage, deleteMessage }: reduxProps) {
 
 export default connect(
   (state: RootState) => ({
-    chat: state.chatReducer,
+    user: state.userReducer.isLoggin,
   }),
   (dispatch: Dispatch) => ({
     postMessage: (message: message) => dispatch(postMessage(message)),
-    deleteMessage: (message: message) => dispatch(deleteMessage(message)),
   })
 )(ChatInput);

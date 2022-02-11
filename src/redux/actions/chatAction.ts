@@ -1,4 +1,4 @@
-import { message } from '../types/message';
+import { message } from '../../types/message';
 
 export const POST_MESSAGE = 'POST_MESSAGE' as const;
 export const DELETE_MESSAGE = 'DELETE_MESSAGE' as const;
@@ -22,4 +22,4 @@ export const deleteMessage = (message: message): deleteMessageAction => {
   return { type: DELETE_MESSAGE, message };
 };
 
-export type reducerAction = postMessageAction | deleteMessageAction;
+export type chatReducerAction = postMessageAction | deleteMessageAction;
