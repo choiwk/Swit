@@ -1,12 +1,15 @@
 import { message } from 'types/message';
 import { getDate } from './getDate';
-export const generateMessage = (input: string): message => {
+import { reduxUser } from 'types/reduxTypes';
+import { User } from 'types/user';
+export const generateMessage = (user: User, input: string): message => {
   let message = {
-    userId: '현재 로그인',
-    userName: '현재 로그인 이름',
-    profileImage: '이미지 경로',
+    userId: user.userId,
+    userName: user.userName,
+    profileImage: user.profileImage,
     content: input,
     date: getDate(new Date()),
   };
+
   return message;
 };
