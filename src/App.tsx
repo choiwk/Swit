@@ -2,9 +2,7 @@ import { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 
-import ChatInput from 'components/ChatInput/ChatInput';
-import Example from 'components/Example';
-import SignInTest from 'components/Auth/SignInTest';
+import SignInTest from 'components/SignInTest';
 import { RootState } from 'redux/reducer';
 import { reduxUser, reduxSignOut } from 'types/reduxTypes';
 
@@ -33,8 +31,6 @@ function App({ user, signOut }: reduxProps) {
         <>
           <Navbar />
           <Aside />
-          <Example />
-          <ChatInput />
           {/* <TextArea /> */}
         </>
       )}

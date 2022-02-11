@@ -22,7 +22,7 @@ li {
 
 .aside-container {
   display: flex;
-  height: 606px;
+  height: calc(100% - 4rem);
   width: 290px;
   .aside-left {
     @include flex(column);
@@ -124,4 +124,9 @@ li {
       }
     }
   }
+}
+
+.chat-ui-container {
+  flex-grow: 3;
+  width: 100%;
 }
