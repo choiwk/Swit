@@ -9,7 +9,6 @@ export interface postMessageAction {
 }
 
 export const postMessage = (message: message): postMessageAction => {
-  console.log('action');
   return { type: POST_MESSAGE, message };
 };
 

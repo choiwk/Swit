@@ -13,10 +13,11 @@ import './ChatInput.scss';
 interface reduxProps {
   user: reduxUser;
   postMessage: reduxPostMessage;
+  message: string;
+  setMessage: React.Dispatch<React.SetStateAction<string>>;
 }
-function ChatInput({ user, postMessage }: reduxProps) {
-  const [message, setMessage] = useState<string>('');
 
+function ChatInput({ user, postMessage, message, setMessage }: reduxProps) {
   const areaRef = useRef<any>();
 
   useEffect(() => {
@@ -81,6 +82,16 @@ function ChatInput({ user, postMessage }: reduxProps) {
           </button>
         </div>
       </form>
+      <div className='input-bottomtext-wrap'>
+        <span>
+          <strong>Return</strong>
+          &nbsp;key to send
+        </span>
+        <span>
+          <strong>Shift + Return</strong>
+          &nbsp;key to add a new line
+        </span>
+      </div>
     </div>
   );
 }

@@ -16,7 +16,6 @@ function SignInTest({ userList, signIn }: reduxProps) {
     (e: React.FormEvent) => {
       e.preventDefault();
       if (name.length > 0 && userList.some((user) => user.userName === name)) {
-        console.log('로그인', name);
         signIn(name);
         setName('');
       } else {
@@ -26,7 +25,6 @@ function SignInTest({ userList, signIn }: reduxProps) {
     [name]
   );
   const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-    console.log(name);
     setName(e.target.value);
   };
   return (

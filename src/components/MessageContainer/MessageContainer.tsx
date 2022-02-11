@@ -7,15 +7,16 @@ import { RootState } from 'redux/reducer';
 import { reduxUser } from 'types/reduxTypes';
 import './MessageContainer.scss';
 import Message from './Message';
-import ChatInput from 'components/ChatInput/ChatInput';
 
 interface reduxProps {
   chat: message[];
   user: reduxUser;
   deleteMessage: (message: message) => deleteMessageAction;
+  setMessage: React.Dispatch<React.SetStateAction<string>>;
+  inputMessage: string;
 }
 
-function MessageContainer({ user, chat, deleteMessage }: reduxProps) {
+function MessageContainer({ chat, deleteMessage, setMessage, inputMessage }: reduxProps) {
   const scrollRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
     scrollRef.current?.scrollIntoView({ behavior: 'smooth', block: 'end', inline: 'nearest' });
@@ -31,7 +32,15 @@ function MessageContainer({ user, chat, deleteMessage }: reduxProps) {
     <>
       <div className='message-container'>
         {chat.map((message: message, idx) => {
-          return <Message key={idx} message={message} deleteHandler={deleteHandler} />;
+          return (
+            <Message
+              key={idx}
+              message={message}
+              deleteHandler={deleteHandler}
+              setMessage={setMessage}
+              inputMessage={inputMessage}
+            />
+          );
         })}
         <div ref={scrollRef}></div>
       </div>

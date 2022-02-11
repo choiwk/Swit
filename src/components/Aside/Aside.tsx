@@ -1,3 +1,11 @@
+import { useState } from 'react';
+import { MdManageSearch } from 'react-icons/md';
+import { FaStar } from 'react-icons/fa';
+import { HiFolder } from 'react-icons/hi';
+
+import MessageContainer from 'components/MessageContainer/MessageContainer';
+import ChatInput from 'components/ChatInput/ChatInput';
+import MessageToolbar from 'components/MessageToolbar/MessageToolbar';
 import {
   BsFillChatFill,
   BsCheckSquareFill,
@@ -5,15 +13,11 @@ import {
   BsFillPlusCircleFill,
   BsThreeDotsVertical,
 } from 'react-icons/bs';
-import { MdManageSearch } from 'react-icons/md';
-import { FaStar } from 'react-icons/fa';
-import { HiFolder } from 'react-icons/hi';
-
 import './style.scss';
-import MessageContainer from 'components/MessageContainer/MessageContainer';
-import ChatInput from 'components/ChatInput/ChatInput';
 
 function Aside() {
+  const [message, setMessage] = useState<string>('');
+
   return (
     <div className='aside-container'>
       <div className='aside-left'>
@@ -93,10 +97,13 @@ function Aside() {
         </div>
       </div>
       <div className='chat-ui-container'>
-        <MessageContainer />
         <div>
-          <ChatInput />
+          <MessageToolbar />
         </div>
+        <div className='content-wrapper'>
+          <MessageContainer setMessage={setMessage} inputMessage={message}/>
+        </div>
+        <ChatInput message={message} setMessage={setMessage} />
       </div>
     </div>
   );
