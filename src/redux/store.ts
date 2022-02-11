@@ -2,9 +2,6 @@ import { createStore } from 'redux';
 
 import reducer from './reducer';
 
-const initialState = {
-  chat: [],
-};
-const store = createStore(reducer, initialState);
+const store = createStore(reducer);
 
 export default store;
