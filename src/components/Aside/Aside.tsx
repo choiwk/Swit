@@ -11,6 +11,7 @@ import { HiFolder } from 'react-icons/hi';
 
 import './style.scss';
 import MessageContainer from 'components/MessageContainer/MessageContainer';
+import ChatInput from 'components/ChatInput/ChatInput';
 
 function Aside() {
   return (
@@ -93,6 +94,9 @@ function Aside() {
       </div>
       <div className='chat-ui-container'>
         <MessageContainer />
+        <div>
+          <ChatInput />
+        </div>
       </div>
     </div>
   );

@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useRef } from 'react';
+import React, { useState, useCallback, useRef, useEffect } from 'react';
 import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
 import { HiPaperAirplane } from 'react-icons/hi';
@@ -8,7 +8,7 @@ import { postMessage } from 'redux/actions/chatAction';
 import { generateMessage } from 'utils/functions/generateMessage';
 import { reduxUser, reduxPostMessage } from 'types/reduxTypes';
 import { User } from 'types/user';
-import '../ChatInput/ChatInput.scss';
+import './ChatInput.scss';
 
 interface reduxProps {
   user: reduxUser;
@@ -16,17 +16,16 @@ interface reduxProps {
 }
 function ChatInput({ user, postMessage }: reduxProps) {
   const [message, setMessage] = useState<string>('');
-  const [areaHeight, setAreaHeight] = useState<string>('');
 
   const areaRef = useRef<any>();
 
-  const textResize = useCallback(() => {
-    const textArea = areaRef.current;
-    textArea.height = textArea.scrollHeight + 'px';
-    if (textArea.height !== areaHeight) {
-      setAreaHeight(areaRef.current.height);
+  useEffect(() => {
+    if (areaRef && areaRef.current) {
+      areaRef.current.style.height = '0px';
+      const scrollHeight = areaRef.current.scrollHeight;
+      areaRef.current.style.height = scrollHeight + 'px';
     }
-  }, [areaHeight]);
+  }, [message]);
 
   const validMessage = (send: message) => {
     if (message.trim().split('<br>').join('') !== '') {
@@ -72,9 +71,9 @@ function ChatInput({ user, postMessage }: reduxProps) {
           className='chat-input'
           onKeyPress={onKeyPressHandler}
           onChange={onChangeHandler}
-          onKeyDown={textResize}
           value={message}
-          style={{ height: areaHeight, minHeight: '45px' }}
+          placeholder='write a message..'
+          style={{ minHeight: '45px' }}
         ></textarea>
         <div className='btn-container'>
           <button className='send-btn' type='submit'>

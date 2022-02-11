@@ -11,24 +11,21 @@ $lightgray: #d8d8db;
   align-items: center;
   justify-content: center;
 }
-
 * {
   letter-spacing: 0.1px;
 }
-
 li {
   cursor: pointer;
 }
-
 .aside-container {
   display: flex;
-  height: calc(100% - 2rem);
+  height: calc(100% - 4rem);
   width: 100%;
   .aside-left {
     @include flex(column);
     width: 50px;
     border-right: 1px solid $lightgray;
-    padding: 35px 8px;
+    padding: 35px 8px 2px;
     .btn {
       li {
         @include flexCenter();
@@ -50,7 +47,6 @@ li {
       background-color: $lightgray;
     }
   }
-
   .aside-right {
     width: 240px;
     border-right: 1px solid $lightgray;
@@ -125,9 +121,8 @@ li {
     }
   }
 }
-
 .chat-ui-container {
-  flex-grow: 3;
   width: 100%;
-  overflow: scroll;
+  height: calc(100% - 3rem);
+  background-color: RGB(248, 248, 248);
 }

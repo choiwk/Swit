@@ -16,25 +16,26 @@ interface reduxProps {
 }
 
 function MessageContainer({ user, chat, deleteMessage }: reduxProps) {
+  const scrollRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    scrollRef.current?.scrollIntoView({ behavior: 'smooth', block: 'end', inline: 'nearest' });
+  }, [chat]);
+
   const deleteHandler = useCallback(
     (message: message) => (e: React.MouseEvent<HTMLButtonElement>) => {
       deleteMessage(message);
     },
     [chat]
   );
-
-  const scrollRef = useRef<HTMLDivElement>(null);
-  useEffect(() => {
-    scrollRef.current?.scrollIntoView({ behavior: 'smooth', block: 'end', inline: 'nearest' });
-  }, [chat]);
-
   return (
-    <div className='message-container'>
-      {chat.map((message: message, idx) => {
-        return <Message key={idx} message={message} deleteHandler={deleteHandler} />;
-      })}
-      <ChatInput />
-    </div>
+    <>
+      <div className='message-container'>
+        {chat.map((message: message, idx) => {
+          return <Message key={idx} message={message} deleteHandler={deleteHandler} />;
+        })}
+        <div ref={scrollRef}></div>
+      </div>
+    </>
   );
 }
 
