@@ -81,7 +81,7 @@
 - 텍스트 줄바꿈 또는 작성한 텍스트 수정할 때 textarea의 높이 값이 변경됩니다.
 ~~~
 
-### 2. 대화목록 데이터 모델 구성
+#### 2. 대화목록 데이터 모델 구성
 ~~~
 - 메시지의 데이터 모델에는 userId, userName, profileImage, content, date 
 - typescript를 이용하여 각각 데이터 모델에 type을 지정해 주었습니다.
