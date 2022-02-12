@@ -1,46 +1,99 @@
-# Getting Started with Create React App
+<h1 align= "center"> Swit 메신저 구현 과제</h1>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### :house: 배포 URL
 
-## Available Scripts
+![캡쳐](https://user-images.githubusercontent.com/85682854/153686261-fc3e9267-b3e6-4183-807f-18e5dc3e0944.png)
 
-In the project directory, you can run:
+<br/>
 
-### `npm start`
+### 🏗 프로젝트 구조도
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+```html
+├── App.css
+├── App.tsx
+├── assets
+│   ├── assets.ts
+│   ├── main-logo.jpg
+│   ├── svg-icons.svg
+│   └── tab.svg
+├── components
+│   ├── Aside
+│   │   ├── Aside.tsx
+│   │   └── style.scss
+│   ├── Auth
+│   │   ├── SignInTest.tsx
+│   │   └── style.scss
+│   ├── ChatInput
+│   │   ├── ChatInput.scss
+│   │   ├── ChatInput.tsx
+│   │   ├── TextArea.scss
+│   │   └── TextArea.tsx
+│   ├── MessageContainer
+│   │   ├── Message.scss
+│   │   ├── Message.tsx
+│   │   ├── MessageContainer.scss
+│   │   └── MessageContainer.tsx
+│   ├── MessageToolbar
+│   │   ├── MessageToolbar.scss
+│   │   └── MessageToolbar.tsx
+│   └── Nav
+│       ├── Navbar.tsx
+│       └── style.scss
+├── index.css
+├── index.tsx
+├── react-app-env.d.ts
+├── redux
+│   ├── actions
+│   │   ├── chatAction.ts
+│   │   └── userAction.ts
+│   ├── reducer
+│   │   ├── chatReducer.ts
+│   │   ├── index.ts
+│   │   └── userReducer.ts
+│   └── store.ts
+├── types
+│   ├── message.ts
+│   ├── reduxTypes.ts
+│   └── user.ts
+└── utils
+    ├── constants
+    │   ├── chatData.ts
+    │   └── userData.ts
+    └── functions
+        ├── generateMessage.ts
+        ├── getDate.ts
+        └── shortening.ts
+```
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### :exclamation: 설치방법
+~~~
+1. npm install
+2. npm start
+~~~
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+### :clapper: 구현내용
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+#### 1. 필터링
+~~~
+- 상담 중인 요청만 보는 기능
+- 가공방식 / 재료를 선택시(다중선택 가능) 해당 조건에 맞는 견적만 필터링하는 기능
+- 필터링 리셋하는 기능
+- 조건에 맞는 견적 요청이 없을 시 요청카드에 '조건에 맞는 견적 요청이 없습니다'가 뜨는 기능
+~~~
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+#### 2. 요청 카드
+~~~
+- json server로 받아온 목 데이터 mapping
+- 상담중인 고객사는 '상담중' 뱃지가 보이는 기능
+- 카드 hover시 보더 스타일
+~~~
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+#### 3. 반응형
+~~~
+- 360px에 맞춰 모바일버전으로 변하는 기능
+- 햄버거 메뉴 아이콘 클릭시 메뉴 화면이 생기는 기능
+- 백그라운드 영역 탭시 메뉴 close되는 기능
+~~~
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
