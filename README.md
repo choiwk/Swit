@@ -77,7 +77,7 @@
 
 #### 1. 채팅 메시지 입력 (자동 조절)
 ~~~
-- textarea 글자 입력 길이에 따라 textarea으 height 값이 변경되는 기능.
+- textarea 글자 입력 길이에 따라 textarea의 height 값이 변경되는 기능.
 - 텍스트 줄바꿈 또는 작성한 텍스트 수정할 때 textarea의 높이 값이 변경됩니다.
 ~~~
 
